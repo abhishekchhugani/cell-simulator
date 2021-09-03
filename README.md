@@ -29,7 +29,7 @@ The game is a zero-player game, meaning that its evolution is determined by its 
 requiring no further input. One interacts with the Cell Simulator by creating an initial configuration
 and observing how it evolves.
 
-Example: https://user-images.githubusercontent.com/7149052/53603476-bfb00e00-3c05-11e9-8862-1dfd31836dcd.jpg
+Example: https://user-images.githubusercontent.com/291728/33158075-ec01ddde-d05a-11e7-99b8-35af2fed02e5.gif
 
 ## Acceptance criteria
 

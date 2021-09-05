@@ -21,17 +21,17 @@ export const findNeighbourCells = (cellX: number, cellY: number, totalRows: numb
 
         // Logic for wrapping the cell if it comes to life outside the board starts here
 
-        if (neighbourX === -1) {
-            neighbourX = totalColumns - 1;
+        if (neighbourX < 0) {
+            neighbourX = totalColumns + neighbourX;
         }
-        if (neighbourX === totalColumns) {
-            neighbourX = 0;
+        if (neighbourX >= totalColumns) {
+            neighbourX = neighbourX - totalColumns;
         }
-        if (neighbourY === -1) {
-            neighbourY = totalRows - 1;
+        if (neighbourY < 0) {
+            neighbourY = totalRows + neighbourY;
         }
-        if (neighbourY === totalRows) {
-            neighbourY = 0;
+        if (neighbourY >= totalRows) {
+            neighbourY = neighbourY - totalRows;
         }
 
         // Logic for wrapping the cell if it comes to life outside the board ends here

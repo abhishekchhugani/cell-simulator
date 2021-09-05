@@ -32,25 +32,25 @@ const Grid = (props: IGridProps) => {
    * Once started cells will keep on multiplying every 100 ms
    */
 
-  const startNextGeneration = React.useCallback(() => {
+  const startNextGeneration = () => {
     if (!isGenerationOnRef.current) {
       return;
     }
     setGrid((g) => {
       return produce(g, (gridCopy) => {
         for (let i = 0; i < props.rows; i++) {
-          for (let k = 0; k < props.columns; k++) {
+          for (let j = 0; j < props.columns; j++) {
             let neighbours = findNeighbourCells(
               i,
-              k,
+              j,
               props.rows,
               props.rows,
               g
             );
             if (killCell(neighbours)) {
-              gridCopy[i][k] = 0;
-            } else if (makeAlive(neighbours, g[i][k] === 0)) {
-              gridCopy[i][k] = 1;
+              gridCopy[i][j] = 0;
+            } else if (makeAlive(neighbours, g[i][j] === 0)) {
+              gridCopy[i][j] = 1;
             }
           }
         }
@@ -58,7 +58,7 @@ const Grid = (props: IGridProps) => {
     });
 
     setTimeout(startNextGeneration, 100);
-  }, []);
+  };
 
   return (
     <>

@@ -1,5 +1,4 @@
 import * as React from "react";
-import produce from "immer";
 import { Button } from "./Button";
 import { createGrid, findNeighbourCells, killCell, makeAlive } from "../utils";
 import { gridContainerStyle, cellStyle } from "../style";
@@ -37,24 +36,18 @@ const Grid = (props: IGridProps) => {
       return;
     }
     setGrid((g) => {
-      return produce(g, (gridCopy) => {
-        for (let i = 0; i < props.rows; i++) {
-          for (let j = 0; j < props.columns; j++) {
-            let neighbours = findNeighbourCells(
-              i,
-              j,
-              props.rows,
-              props.rows,
-              g
-            );
-            if (killCell(neighbours)) {
-              gridCopy[i][j] = 0;
-            } else if (makeAlive(neighbours, g[i][j] === 0)) {
-              gridCopy[i][j] = 1;
-            }
+      let newGrid = JSON.parse(JSON.stringify([...g]));
+      for (let i = 0; i < props.rows; i++) {
+        for (let j = 0; j < props.columns; j++) {
+          let neighbours = findNeighbourCells(i, j, props.rows, props.rows, g);
+          if (killCell(neighbours)) {
+            newGrid[i][j] = 0;
+          } else if (makeAlive(neighbours, g[i][j] === 0)) {
+            newGrid[i][j] = 1;
           }
         }
-      });
+      }
+      return newGrid;
     });
 
     setTimeout(startNextGeneration, 100);

@@ -4,8 +4,8 @@
  *  Something for future improvement maybe.
  *  */
 
-export const numberOfGridRows = 20;
-export const numberOfGridColumns = 20;
+export const numberOfGridRows = 35;
+export const numberOfGridColumns = 35;
 
 
 /**
